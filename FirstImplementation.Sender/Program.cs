@@ -20,10 +20,10 @@ index += new Tlv(TlvType.Title, "Lord of the Rings").WriteBytes(data[index..]);
 index += new Tlv(TlvType.Pages, "1178").WriteBytes(data[index..]);
 
 // Final message
-bytes = data[..index].ToArray();
+Memory<byte> message = bytes.AsMemory(0, index);
 
 // send TCP message
-await socket.SendAsync(bytes);
+await socket.SendAsync(message);
 
 // Close connection
 await socket.DisconnectAsync(false);

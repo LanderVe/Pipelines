@@ -6,6 +6,7 @@ namespace FirstImplementation.Sender;
 record struct Tlv(TlvType Type, string Value)
 {
     public static Tlv Empty { get; } = new Tlv();
+
     public readonly int WriteBytes(Span<byte> bytes)
     {
         bytes[0] = (byte)Type;
